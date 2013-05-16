@@ -13,9 +13,9 @@
     （2）在Windows平台下：
          在Windows下，默认的安装文件仅支持Windows7系统，不支持Windows7以下的版本，比如：Windows XP。否则，您需要自己手工拷贝。
          1> 安装全功能配置：
-            $ ./install-awesome-emacs-on-windows.bat
+            ./install-awesome-emacs-on-windows.bat
          2> 安装简单配置：
-            $ ./install-simple-emacs-on-windows.bat
+            ./install-simple-emacs-on-windows.bat
             
 
 <b>Directory Structure——目录结构</b>
