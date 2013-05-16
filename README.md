@@ -1,9 +1,8 @@
-emacs.d
-=======
+我的Emacs配置
+======
 
-我的Emacs配置。
+<b>Install——安装<b/>
 
-Install——安装
     首先将本配置包放到用户的主目录下，并命名为“.emacs.d”（没有两边的双引号）。
     本安装支持两种方式：全功能配置和简单配置。
     （1）在Linux及Unix-like平台下：
@@ -18,7 +17,8 @@ Install——安装
             $ ./install-simple-emacs-on-windows.bat
             
 
-Directory Structure——目录结构
+<b>Directory Structure——目录结构</b>
+
     .emacs.d/
          backup/                               # 第三方插件备份目录，即目前没有被使用但以后将被使用的插件。
          configs/                              # 配置文件目录，其中包括内置插件和第三方插件的配置文件。
@@ -33,7 +33,8 @@ Directory Structure——目录结构
          README.md                             # 说明文件
 
 
-Questions——问题
+<b>Questions——问题</b>
+
     （1）如何查找 Windows 7 系统下用户主目录？
      在Windows7系统下，对Emacs而言，其主目录和VIM等软件对其主目录的看待不一样；对Emacs而言，Windows7用户的
      主目录较复杂一些。其定位方式也行简单：只需要打开Emacs（可以使用任何方式，只要能打开Emacs就行），在Emacs
@@ -41,7 +42,8 @@ Questions——问题
      的具体位置。
      
      
-Other Resources——其他资源
+<b>Other Resources——其他资源</b>
+
     （1）Emacs Lisp List————Emacs第三方插件收集列表
      http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html
      
