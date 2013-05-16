@@ -1,6 +1,5 @@
 #!/bin/sh
 
-echo '(setq load-path (cons "~/.emacs.d/" load-path))
-(load "emacs-config.el")' > ~/.emacs
+cp ~/.emacs.d/.emacs  ~
 echo "Install Successfully! :-)"
 echo

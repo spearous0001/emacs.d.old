@@ -1,4 +1,3 @@
-echo '(setq load-path (cons "~/.emacs.d/" load-path))
-(load "emacs-config.el")' > ~/.emacs
-echo "Install Successfully! :-)"
-echo
+
+copy "C:\Users\Administrator\AppData\Roaming\.emacs.d\.emacs" "C:\Users\Administrator\AppData\Roaming\.emacs"
+echo "Install Successfully! :-)\n"
