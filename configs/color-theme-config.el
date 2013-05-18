@@ -8,21 +8,14 @@
 ;;    该注释。
 
 (setq load-path (cons "~/.emacs.d/lisps/color-theme/" load-path))
-(load "color-theme")
+(require 'color-theme)
 
-;;(require 'color-theme)
+(setq load-path (cons "~/.emacs.d/lisps/color-theme/themes/" load-path))
+(load "color-theme-library")
+
 ;; use xterm
-;;(color-theme-arjen)
-;;(color-theme-billw)
-;;(color-theme-tty-dark)
-;;(color-theme-euphoria)
-;;(color-theme-snow)
-;;(color-theme-scintilla) ;; OK
-;;(color-theme-midnight) ;; OK-1
-;;(color-theme-katester) ;; OK-0
-;;(color-theme-high-contrast)
-;;(color-theme-gray1)
-;;(color-theme-dark-laptop)
+;;(color-theme-scintilla)
+(color-theme-midnight)
 
 ;; use X Window 
 ;;(color-theme-gnome2)
