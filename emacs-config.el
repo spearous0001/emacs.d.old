@@ -68,12 +68,13 @@
 ;; ----------------------------------------------------------------------------
 ;; --------------------------------- tabbar -----------------------------------
 ;; 在窗口的顶端设置并打开一个缓冲区列表条，绑定到一些按键上方便切换。
-(load "tabbar")
-(tabbar-mode  t)
-(global-set-key [(control up)] 'tabbar-backward-group)
-(global-set-key [(control down)] 'tabbar-forward-group)
-(global-set-key [(control rigth)] 'tabbar-backward)
-(global-set-key [(control left)] 'tabbar-forward)
+(when (window-system)
+    (load "tabbar")
+    (tabbar-mode  t)
+    (global-set-key [(control up)] 'tabbar-backward-group)
+    (global-set-key [(control down)] 'tabbar-forward-group)
+    (global-set-key [(control rigth)] 'tabbar-backward)
+    (global-set-key [(control left)] 'tabbar-forward))
 
 ;; ----------------------------------------------------------------------------
 ;; --------------------------------- table ------------------------------------
