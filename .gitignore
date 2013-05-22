@@ -7,6 +7,7 @@ thumbs/
 .emacs.abbr
 ede-projects.el
 srecode-map.el
+*.elc
 *.swp
 *~
 #*#
