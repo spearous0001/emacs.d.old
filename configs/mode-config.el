@@ -1,10 +1,9 @@
 
-;;; 各种模式（mode）设置
+;;;; 各种模式（mode）设置
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;;{{{ Menu ;;;;
-
+;;;{{{ Menu ;;;;
 (if (boundp 'vc-menu-map)
     (add-to-list 'minor-mode-map-alist
                  `(vc-mode keymap
@@ -26,6 +25,7 @@ HELP is the text to use for the tooltip."
                 (find-file-read-only
                  (expand-file-name ,file data-directory)))
               :help ,help))
+
 
 (let ((last 'emacs-problems)           ; start point in menu
       file doc this)
@@ -61,6 +61,7 @@ PROPS are additional properties."
           :button (:toggle . (and (boundp ',fname)
                    ,fname))))
 
+
 (or (fboundp 'menu-bar-make-mm-toggle)  ; for 21.3
     (defmacro menu-bar-make-mm-toggle (fname doc help &optional props) ""
       `'(menu-item ,doc ,fname
@@ -82,47 +83,48 @@ PROPS are additional properties."
      "Highlight whitespace at line ends (Show Trailing Whitespace)")
     'highlight-paren-mode)
 
+
   (define-key-after menu-bar-options-menu [toggle-auto-image]
     (menu-bar-make-mm-toggle auto-image-file-mode
-            ;; "自动显示图片文件"
-            ;; "以查看图片的方式显示图片")
-            "Automatic Display of Image Files"
-            "Visit image files as images")
-    'toggle-auto-compression)
+      ;; "自动显示图片文件"
+      ;; "以查看图片的方式显示图片")
+      "Automatic Display of Image Files"
+      "Visit image files as images")
+      'toggle-auto-compression)
 
   (define-key-after menu-bar-options-menu [debug-on-signal]
     (menu-bar-make-toggle
-     toggle-debug-on-signal debug-on-signal
-     ;; "以信号的方式进入Debugger" "在 %s 信号上调试"
-     ;; "不管条件处理模式,进入Lisp的调试模式")
-     "Enter Debugger on Signal" "Debug on Signal %s"
-     "Enter Lisp debugger regardless of condition handlers")
-    'debug-on-error)
+      toggle-debug-on-signal debug-on-signal
+      ;; "以信号的方式进入Debugger" "在 %s 信号上调试"
+      ;; "不管条件处理模式,进入Lisp的调试模式")
+      "Enter Debugger on Signal" "Debug on Signal %s"
+      "Enter Lisp debugger regardless of condition handlers")
+      'debug-on-error)
 
   (if (boundp 'menu-bar-showhide-menu)
-      (define-key menu-bar-showhide-menu [ruler]
-        (my-menu-bar-make-local-mm-toggle ruler-mode
-            ;; "Ruler" "ruler显示/不显示"))
-            "Ruler" "Turn ruler on/off"))
+    (define-key menu-bar-showhide-menu [ruler]
+      (my-menu-bar-make-local-mm-toggle ruler-mode
+        ;; "Ruler" "ruler显示/不显示"))
+        "Ruler" "Turn ruler on/off"))
 
     (define-key-after menu-bar-options-menu [tool-bar-separator]
       '("--") 'debug-on-quit)
 
     (define-key-after menu-bar-options-menu [tool-bar]
       (menu-bar-make-mm-toggle tool-bar-mode 
-            ;; "收起工具条"
-            ;; "切换工具条的显示")
-            "Toggle Tool Bar"
-            "Toggle display of the tool-bar")
-      'tool-bar-separator)
+        ;; "收起工具条"
+        ;; "切换工具条的显示")
+        "Toggle Tool Bar"
+        "Toggle display of the tool-bar")
+        'tool-bar-separator)
 
     (define-key-after menu-bar-options-menu [display-time]
       (menu-bar-make-mm-toggle
-       display-time-mode 
-       ;; "切换显示 时间/邮件"
-       ;; "切换显示 时间/邮件 的指示器"))))
-       "Toggle Display Time/Mail"
-       "Toggle display of the time and mail indicator"))))
+        display-time-mode 
+        ;; "切换显示 时间/邮件"
+        ;; "切换显示 时间/邮件 的指示器"))))
+        "Toggle Display Time/Mail"
+        "Toggle display of the time and mail indicator"))))
 
 ;;}}} Menu ;;;;
 
@@ -135,8 +137,6 @@ PROPS are additional properties."
 ;;使用gdb的图形模式
 (setq gdb-many-windows t)
 ;;(global-font-lock-mode 1)
-
-
 
 ;;该部分从别的地方直接拷贝过来，============= 待仔细查看、修改 ===============
 (setq font-lock-maximum-decoration t
@@ -209,10 +209,8 @@ PROPS are additional properties."
       (let ((dir (if (listp element) (cdr element) element)))
         (or (file-directory-p dir) (make-directory element))))
    fast-lock-cache-directories)
-
 ;;;
 ;;}}} Font-lock ;;;;
-
 
 
 ;;{{{ 缩写词abbrev mode
@@ -223,9 +221,7 @@ PROPS are additional properties."
 ;;}}}
 
 
-
 ;;{{{ c-mode 的配置，专门为kernel的编程风格做一个模块
-
 ;; face
 (font-lock-add-keywords
  'c-mode
@@ -326,13 +322,13 @@ PROPS are additional properties."
            "/usr/include")))))
 ;;}}} c mode
 
+
 ;;{{{ 我的Java语言编辑策略
 (defun my-java-mode-hook()
-  (setq tab-width 4 indent-tabs-mode nil)
-  )
-
+  (setq tab-width 4 indent-tabs-mode nil))
 (add-hook 'java-mode-hook 'my-java-mode-hook)
 ;;}}}
+
 
 ;;{{{ Python Mode设置
 (add-to-list 'load-path "~/.emacs.d/lisps/python-mode/")
@@ -354,8 +350,9 @@ PROPS are additional properties."
 
 ;;(require 'pycomplete)
 (setq py-load-pymacs-p t)
-
+;;;
 ;;}}}
+
 
 ;;{{{ 注释配置
 ;; (load-file "/home/jerry/lib/emacs-lisp/gnome-doc.el")
@@ -368,7 +365,6 @@ PROPS are additional properties."
 
 
 ;;{{{ Lisp-mode ;;;;
-
 ;; 增加一些常用的高亮颜色
 (font-lock-add-keywords
  'emacs-lisp-mode
@@ -405,8 +401,9 @@ PROPS are additional properties."
 
 (setq eval-expression-print-level  10
       eval-expression-print-length 100)
-
+;;;
 ;;}}} Lisp-mode ;;;;
+
 
 ;;{{{ WoMan ;;;;
 (setq
@@ -434,10 +431,11 @@ PROPS are additional properties."
 ;; So that each instance will pop up a new frame.
 ;; Maybe `special-display-regexps' would be better?
 (add-hook 'woman-post-format-hook (lambda () (setq woman-frame nil)))
+;;;
 ;;}}} WoMan ;;;;
 
-;;{{{ eshell ;;;;
 
+;;{{{ eshell ;;;;
 (defface my-eshell-code-face
   '((t (:foreground "Green")))
   "Eshell face for code (.c, .f90 etc) files.")
@@ -501,7 +499,6 @@ Argument STRING pwd."
   (eshell-bol)
   (kill-line))
 
-
 (defun my-eshell-clear-buffer ()
   "Eshell clear buffer."
   (interactive)
@@ -510,7 +507,6 @@ Argument STRING pwd."
 
 (defalias 'eshell/clear 'my-eshell-clear-buffer)
 
-
 (setq eshell-directory-name (expand-file-name "eshell" "~/.emacs.d/")
       eshell-pwd-convert-function 'my-tidy-pwd
       eshell-prompt-function 'my-eshell-prompt-function
@@ -518,7 +514,6 @@ Argument STRING pwd."
       eshell-ask-to-save-history 'always
       eshell-banner-message `(format-time-string
                               "Eshell startup: %T, %A %d %B %Y\n\n"))
-
 
 (defun my-eshell-first-time-mode-hook-fn ()
   "Function added to `eshell-first-time-mode-hook'."
@@ -532,7 +527,7 @@ Argument STRING pwd."
           '("pico" "nano")))
 
 (add-hook 'eshell-first-time-mode-hook 'my-eshell-first-time-mode-hook-fn)
-
+;;;
 ;;}}} eshell ;;;;
 
 
@@ -556,7 +551,6 @@ Argument STRING pwd."
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-
 (defun my-shell-mode-hook-fn ()
   "Function added to `shell-mode-hook'."
   ;; M-p by default.
@@ -567,13 +561,13 @@ Argument STRING pwd."
 
 (add-hook 'shell-mode-hook 'my-shell-mode-hook-fn)
 
-
 ;; Passing with lambda expression not liked.
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
-
+;;;
 ;;}}} Shell-mode ;;;;
+
 
 ;;{{{ 对相应的文件设定相应的模式，以便正确的语法显亮
 ;;文件名用正则表达式表示，注意不要后面覆盖了前面的而引起的误会
@@ -602,7 +596,7 @@ Argument STRING pwd."
    ("\\.strokes$" . fvwm-mode)
    ("\\.conkyrc$" . fvwm-mode)
    ))
-
+;;;
 ;;}}}auto-list-mode
 
 (provide 'mode-config)
