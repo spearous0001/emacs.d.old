@@ -1,0 +1,6 @@
+(setq load-path (cons "~/.emacs.d/lisps/debian-utils/debian-el" load-path))
+(setq load-path (cons "~/.emacs.d/lisps/debian-utils/devscripts-el" load-path))
+(setq load-path (cons "~/.emacs.d/lisps/debian-utils/dpkg-dev-el" load-path))
+(load "debian-el-loaddefs")
+(load "devscripts")
+(load "dpkg-dev-el-loaddefs")
