@@ -1,9 +1,9 @@
-;;; invisible.el --- hide region
+;;; pces-xfc.el --- pces module for XEmacs with file coding
 
-;; Copyright (C) 1995,1996,1997,1998,1999,2010 Free Software Foundation, Inc.
+;; Copyright (C) 1998,1999 Free Software Foundation, Inc.
 
 ;; Author: MORIOKA Tomohiko <tomo@m17n.org>
-;; Keywords: invisible, text-property, region
+;; Keywords: emulation, compatibility, Mule
 
 ;; This file is part of APEL (A Portable Emacs Library).
 
@@ -24,21 +24,25 @@
 
 ;;; Code:
 
-(cond
- ((featurep 'xemacs)
-  (require 'inv-xemacs))
- ((>= emacs-major-version 23)
-  (require 'inv-23))
- ((>= emacs-major-version 19)
-  (require 'inv-19))
- (t
-  (require 'inv-18)))
+;; Redefine if -{dos|mac|unix} is not found.
+(or (find-coding-system 'raw-text-dos)
+    (copy-coding-system 'no-conversion-dos 'raw-text-dos))
+(or (find-coding-system 'raw-text-mac)
+    (copy-coding-system 'no-conversion-mac 'raw-text-mac))
+(or (find-coding-system 'raw-text-unix)
+    (copy-coding-system 'no-conversion-unix 'raw-text-unix))
+
+(if (featurep 'mule)
+    (require 'pces-xm)
+  )
+
+(require 'pces-20)
 
 
 ;;; @ end
 ;;;
 
 (require 'product)
-(product-provide (provide 'invisible) (require 'apel-ver))
+(product-provide (provide 'pces-xfc) (require 'apel-ver))
 
-;;; invisible.el ends here
+;;; pces-xfc.el ends here

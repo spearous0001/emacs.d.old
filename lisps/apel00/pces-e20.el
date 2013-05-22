@@ -1,9 +1,9 @@
-;;; invisible.el --- hide region
+;;; pces-e20.el --- pces submodule for Emacs 20
 
-;; Copyright (C) 1995,1996,1997,1998,1999,2010 Free Software Foundation, Inc.
+;; Copyright (C) 1998,1999 Free Software Foundation, Inc.
 
 ;; Author: MORIOKA Tomohiko <tomo@m17n.org>
-;; Keywords: invisible, text-property, region
+;; Keywords: emulation, compatibility, Mule
 
 ;; This file is part of APEL (A Portable Emacs Library).
 
@@ -24,21 +24,25 @@
 
 ;;; Code:
 
-(cond
- ((featurep 'xemacs)
-  (require 'inv-xemacs))
- ((>= emacs-major-version 23)
-  (require 'inv-23))
- ((>= emacs-major-version 19)
-  (require 'inv-19))
- (t
-  (require 'inv-18)))
+(require 'pces-20)
+
+(unless (and (fboundp 'set-buffer-multibyte)
+	     (subrp (symbol-function 'set-buffer-multibyte)))
+  (require 'pces-e20_2) ; for Emacs 20.1 and 20.2
+  )
+
+(defsubst-maybe find-coding-system (obj)
+  "Return OBJ if it is a coding-system."
+  (if (coding-system-p obj)
+      obj))
+
+(defalias 'set-process-input-coding-system 'set-process-coding-system)
 
 
 ;;; @ end
 ;;;
 
 (require 'product)
-(product-provide (provide 'invisible) (require 'apel-ver))
+(product-provide (provide 'pces-e20) (require 'apel-ver))
 
-;;; invisible.el ends here
+;;; pces-e20.el ends here
