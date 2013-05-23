@@ -32,7 +32,7 @@
              emacs-basic-config.el             # 基本、简单的配置文件。
          lisps/                                # 第三方插件目录，如果其配置文件较大，将单独成一个文件放置
                                                # 在configs目录，否则将直接放在emacs.config.el文件中。
-         emacs-config.el                       # 全功能配置文件，其将引用configs目录下自有的配置文件。
+         emacs-config.el                       # 全功能配置文件，其将引用configs目录下所有的配置文件。
          install-awesome-emacs-on-posix.sh     # POSIX兼容平台下全功能配置安装文件
          install-awesome-emacs-on-windows.bat  # Windows平台下全功能配置安装文件
          install-simple-emacs-on-posix.sh      # POSIX兼容平台下简单配置安装文件
