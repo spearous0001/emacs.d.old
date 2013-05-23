@@ -249,8 +249,8 @@ PROPS are additional properties."
 ;; (setq auto-mode-alist (cons '("/home/jerry/linux.*/.*\\.[ch]$" . my-linux-c-mode)
 ;;                             auto-mode-alist))
 
-;; 我的linux的kernel的编辑策略
 
+;; 我的linux的kernel的编辑策略
 (defun my-linux-c-mode ()
   "C mode with adjusted defaults for use with the Linux kernel."
   (interactive)
@@ -260,16 +260,18 @@ PROPS are additional properties."
   (setq indent-tabs-mode t)
   (setq c-basic-offset 8))
 
-;; FIXME 我的C/C++语言编辑策略
 
+;; FIXME 我的C/C++语言编辑策略
 (defun my-c-mode-common-hook()
-  (c-set-style "k&r")
-  (setq tab-width 4 indent-tabs-mode t)
-;;;(setq tab-width 4 indent-tabs-mode nil)
+  ;(c-set-style "k&r")
+  (c-set-style "stroustrup")
+  ;(setq tab-width 4 indent-tabs-mode t)
+  (setq tab-width 4 indent-tabs-mode nil)
 ;;; hungry-delete and auto-newline
   (c-toggle-auto-hungry-state 1)
   (hs-minor-mode 1)
   (setq abbrev-mode 1)
+  
   ;;按键定义
   (define-key c-mode-base-map [(control \`)] 'hs-toggle-hiding)
   (define-key c-mode-base-map [(return)] 'newline-and-indent)
@@ -279,6 +281,7 @@ PROPS are additional properties."
   ;;  (define-key c-mode-base-map [(tab)] 'hippie-expand)
   (define-key c-mode-base-map [(tab)] 'my-indent-or-complete)
   (define-key c-mode-base-map [(meta ?/)] 'semantic-ia-complete-symbol-menu)
+  
   ;;预处理设置
   (setq c-macro-shrink-window-flag t)
   (setq c-macro-preprocessor "cpp")
@@ -290,14 +293,11 @@ PROPS are additional properties."
   ;;   (ctypes-auto-parse-mode 1)
   )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-
 (add-hook 'c-mode-hook 'imenu-add-menubar-index)
 
 ;; (defun my-ctypes-load-hook ()
 ;;   (ctypes-read-file "~/.ctypes_std_c" nil t t))
 ;; (add-hook 'ctypes-load-hook 'my-ctypes-load-hook)
-
-;;打开c mode的时候打开cscope,和type define
 
 ;;;;我的C++语言编辑策略
 (defun my-c++-mode-hook()
