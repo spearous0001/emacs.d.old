@@ -1,7 +1,7 @@
 我的Emacs配置
 ======
 
-    本配置已经分别在 Windows 和 Ubuntu 系统下对 Emacs23 和 Emacs24 两个版本进行测试，结果测试均通过。
+    本配置已经分别在 Windows7 和 Ubuntu 系统下对 Emacs23 和 Emacs24 两个版本进行测试，结果测试均通过。
     本配置的原则：
        （1）不依赖操作系统平台环境；即对Unix及类Unix系统和Windows系统均支持；
        （2）不依赖第三方程序；即只要安装本配置就可100％地完全使用，而不会缺失其它功能，除非有特殊说明。
@@ -9,19 +9,23 @@
     
 <b>Install——安装<b/>
 
-    首先将本配置包放到用户的主目录下，并命名为“.emacs.d”（没有两边的双引号）。
+    首先将本配置包放到任何一个目录下，可以命名为任何一个合法的目录名（不建议命名为“.emacs.d”————以免在某种条件下引起名字冲突）；
+    然后在命令行下切换到该配置包的顶层目录中，并执行以下命令：
     本安装支持两种方式：全功能配置和简单配置。
     （1）在Linux及Unix-like平台下：
          1> 安装全功能配置：
             $ sh install-awesome-emacs-on-posix.sh
          2> 安装简单配置：
             $ sh install-simple-emacs-on-posix.sh
+         注：如果给以上两个文件添加了可执行权限，可以直接执行，如：
+             install-awesome-emacs-on-posix.sh    或    install-simple-emacs-on-posix.sh
     （2）在Windows平台下：
          在Windows下，默认的安装文件仅支持Windows7系统，不支持Windows7以下的版本，比如：Windows XP。否则，您需要自己手工拷贝。
          1> 安装全功能配置：
-            ./install-awesome-emacs-on-windows.bat
+            .\install-awesome-emacs-on-windows.bat    或    install-awesome-emacs-on-windows.bat
          2> 安装简单配置：
-            ./install-simple-emacs-on-windows.bat
+            .\install-simple-emacs-on-windows.bat    或    install-simple-emacs-on-windows.bat
+         注：在Windows系统中，也可以直接用鼠标双击这两个BAT批处理文件来完成安装。
             
 
 <b>Directory Structure——目录结构</b>
