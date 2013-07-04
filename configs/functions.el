@@ -41,7 +41,7 @@ Argument ARG paren."
 
 
 ;;{{{ forward-go-to-char，类似VIM中的f移动键
-(global-set-key [(control ?f)] 'my-forward-go-to-char)
+(global-set-key [(control ?c) (control ?f)] 'my-forward-go-to-char)
 (defun my-forward-go-to-char (n char)
   "Move forward to Nth occurence of CHAR.
 Typing `my-forward-go-to-char' again will move forwad to the next Nth
