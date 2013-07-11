@@ -10,6 +10,7 @@ flc/
 ede-projects.el
 srecode-map.el
 literal-test-file
+tramp
 *.elc
 *.swp
 *~
