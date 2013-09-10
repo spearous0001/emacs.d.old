@@ -4,7 +4,6 @@
 ;; ------------------------------- load-path ----------------------------------
 (setq load-path (cons "~/.emacs.d/lisps/" load-path))
 (setq load-path (cons "~/.emacs.d/configs/" load-path))
-(setq load-path (cons "~/.emacs.d/lisps/apel/" load-path))
 
 ;; ----------------------------------------------------------------------------
 ;; ------------------------------- basic-config -------------------------------
