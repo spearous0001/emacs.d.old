@@ -167,7 +167,7 @@ print a message in the minibuffer with the result."
 ;;}}}
 
 
-;;{{{ 在文档里插入时间，用户名还有系统的信息
+;;{{{ 在文档里插入时间、用户名还有系统的信息
 (defun my-stamp (&optional arg)
   "Insert current date, user, and system information.
 With optional argument ARG, use \"*Created: -- *\" format."
@@ -220,6 +220,7 @@ With optional argument ARG, use \"*Created: -- *\" format."
   )
 ;;}}}
 
+
 ;;{{{ 找到这个buffer里最长的一行，并且到达哪里，很不错的功能
 (defun my-longest-line (&optional goto)
   "Find visual length (ie in columns) of longest line in buffer.
@@ -269,7 +270,8 @@ ARG is positive, otherwise deactivate it."
   (mapcar (lambda (hook) (add-hook hook 'my-show-trailing-whitespace))
           '(sh-mode-hook emacs-lisp-mode-hook f90-mode-hook
                          fortran-mode-hook awk-mode-hook
-                         change-log-mode-hook c-mode-hook)))
+                         change-log-mode-hook c-mode-hook c++-mode-hook
+                         python-mode-hook)))
 ;;}}}
 
 
@@ -284,7 +286,8 @@ Return values are suitable for use with `write-file-functions'."
         ;; Would an exclude list be better?
         ;; Error was occurring in VM-mode for some reason.
         (when (memq major-mode '(text-mode sh-mode emacs-lisp-mode
-                                           f90-mode awk-mode c-mode))
+                                 f90-mode awk-mode c-mode c++-mode
+                                 python-mode))
           (message "Cleaning up whitespace...")
           (delete-trailing-whitespace)
           (message "Cleaning up whitespace...done")

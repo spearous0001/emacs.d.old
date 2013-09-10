@@ -14,7 +14,6 @@
   ;;'("(重新)启动server" . server-start) t)
   '("(Re)start Server" . server-start) t)
 
-
 (defun my-menu-bar-find-file (file doc help)
   "Make a menu-item to visit a file read-only.
 FILE is the file to visit, relative to `data-directory'.
@@ -25,7 +24,6 @@ HELP is the text to use for the tooltip."
                 (find-file-read-only
                  (expand-file-name ,file data-directory)))
               :help ,help))
-
 
 (let ((last 'emacs-problems)           ; start point in menu
       file doc this)
@@ -47,7 +45,6 @@ HELP is the text to use for the tooltip."
         ("JOKES"      . "Emacs Jokes")
         ("future-bug" . "Emacs Future Bug"))))
 
-
 ;; cf menu-bar-make-mm-toggle.
 (defmacro my-menu-bar-make-local-mm-toggle (fname doc help &optional props)
   "Make a menu-item for a local minor mode toggle.
@@ -61,7 +58,6 @@ PROPS are additional properties."
           :button (:toggle . (and (boundp ',fname)
                    ,fname))))
 
-
 (or (fboundp 'menu-bar-make-mm-toggle)  ; for 21.3
     (defmacro menu-bar-make-mm-toggle (fname doc help &optional props) ""
       `'(menu-item ,doc ,fname
@@ -69,7 +65,6 @@ PROPS are additional properties."
          :help ,help
          :button (:toggle . (and (default-boundp ',fname)
                   (default-value ',fname))))))
-
 
 (when (boundp 'menu-bar-options-menu)
   ;; Note that an error in a definition of this kind caused Emacs to exit
@@ -82,7 +77,6 @@ PROPS are additional properties."
      "Trailing Whitespace Highlighting"
      "Highlight whitespace at line ends (Show Trailing Whitespace)")
     'highlight-paren-mode)
-
 
   (define-key-after menu-bar-options-menu [toggle-auto-image]
     (menu-bar-make-mm-toggle auto-image-file-mode
@@ -129,6 +123,7 @@ PROPS are additional properties."
 ;;}}} Menu ;;;;
 
 
+
 ;;{{{ Font-lock ;;;;
 ;;;
 ;;启动语法高亮模式
@@ -149,7 +144,6 @@ PROPS are additional properties."
       font-lock-verbose t
       font-lock-maximum-size '((t . 1048576) (vm-mode . 5250000)))
 
-
 ;; Extra highlighting.
 (mapcar '(lambda (element)
       (let ((mode (car element))
@@ -168,14 +162,12 @@ PROPS are additional properties."
      (f90-mode      . "!")
      (makefile-mode . "#")))
 
-
 ;; Support mode.
 ;; jit-lock doesn't seem to work for MIME messages in VM.
 (setq font-lock-support-mode
       (if (boundp 'jit-lock-mode)
           '((vm-mode . fast-lock-mode) (t . jit-lock-mode))
         'fast-lock-mode))
-
 
 ;; Jit-lock.
 (setq jit-lock-stealth-verbose nil
@@ -192,7 +184,6 @@ PROPS are additional properties."
       ;; Any other value, only if syntactic fontification for that buffer.
       jit-lock-defer-contextually 'syntax-driven)
 
-
 ;; Fast-lock. Caches font-lock information to speed up loads.
 (setq fast-lock-minimum-size 50000 ; but not for small files
       fast-lock-verbose      50000 ; so keep quiet
@@ -204,7 +195,6 @@ PROPS are additional properties."
       ;; Prefer all information to be in one place rather than ./
       fast-lock-cache-directories `(,(expand-file-name "flc" "~/.emacs.d/")))
 
-
 (mapcar '(lambda (element)
       (let ((dir (if (listp element) (cdr element) element)))
         (or (file-directory-p dir) (make-directory element))))
@@ -213,12 +203,14 @@ PROPS are additional properties."
 ;;}}} Font-lock ;;;;
 
 
-;;{{{ 缩写词abbrev mode
+
+;;{{{ abbrev mode
 ;; ensure abbrev mode is always on
 (setq-default abbrev-mode t)
 ;; do not bug me about saving my abbreviations
 (setq save-abbrevs nil)
 ;;}}}
+
 
 
 ;;{{{ c-mode 的配置，专门为kernel的编程风格做一个模块
@@ -234,6 +226,7 @@ PROPS are additional properties."
    (,(regexp-opt '("&&" "||" "<=" ">=" "==" "!=" ; overkill?
                    "++" "--" "+=" "-=" "*=" "/=") t) .
                    font-lock-constant-face)))
+
 ;; This will define the M-x my-linux-c-mode command.  When hacking on a
 ;; module, if you put the string -*- linux-c -*- somewhere on the first
 ;; two lines, this mode will be automatically invoked. Also, you may want
@@ -249,7 +242,6 @@ PROPS are additional properties."
 ;; (setq auto-mode-alist (cons '("/home/jerry/linux.*/.*\\.[ch]$" . my-linux-c-mode)
 ;;                             auto-mode-alist))
 
-
 ;; 我的linux的kernel的编辑策略
 (defun my-linux-c-mode ()
   "C mode with adjusted defaults for use with the Linux kernel."
@@ -260,28 +252,27 @@ PROPS are additional properties."
   (setq indent-tabs-mode t)
   (setq c-basic-offset 8))
 
-
 ;; FIXME 我的C/C++语言编辑策略
 (defun my-c-mode-common-hook()
-  ;(c-set-style "k&r")
-  (c-set-style "stroustrup")
+  (c-set-style "k&r")
+  ;(c-set-style "stroustrup")
   ;(setq tab-width 4 indent-tabs-mode t)
   (setq tab-width 4 indent-tabs-mode nil)
-;;; hungry-delete and auto-newline
+  ;; hungry-delete and auto-newline
   (c-toggle-auto-hungry-state 1)
   (hs-minor-mode 1)
   (setq abbrev-mode 1)
-  
+
   ;;按键定义
   (define-key c-mode-base-map [(control \`)] 'hs-toggle-hiding)
   (define-key c-mode-base-map [(return)] 'newline-and-indent)
   (define-key c-mode-base-map [(f7)] 'compile)
   (define-key c-mode-base-map [(f8)] 'ff-get-other-file)
   (define-key c-mode-base-map [(meta \`)] 'c-indent-command)
-  ;;  (define-key c-mode-base-map [(tab)] 'hippie-expand)
+  ;(define-key c-mode-base-map [(tab)] 'hippie-expand)
   (define-key c-mode-base-map [(tab)] 'my-indent-or-complete)
   (define-key c-mode-base-map [(meta ?/)] 'semantic-ia-complete-symbol-menu)
-  
+
   ;;预处理设置
   (setq c-macro-shrink-window-flag t)
   (setq c-macro-preprocessor "cpp")
@@ -306,13 +297,13 @@ PROPS are additional properties."
   ;;   ;;显示C的typedef
   ;;   (require 'ctypes)
   ;;   (ctypes-auto-parse-mode 1)
-  (c-set-style "stroustrup")
+  ;(c-set-style "stroustrup")
+  (c-set-style "k&r")
   ;;  (define-key c++-mode-map [f3] 'replace-regexp)
   )
-
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
-;;;;C/C++语言启动时自动加载semantic对/usr/include的索引数据库
+;;; C/C++语言启动时自动加载semantic对/usr/include的索引数据库
 (setq semanticdb-search-system-databases t)
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -323,11 +314,13 @@ PROPS are additional properties."
 ;;}}} c mode
 
 
+
 ;;{{{ 我的Java语言编辑策略
 (defun my-java-mode-hook()
   (setq tab-width 4 indent-tabs-mode nil))
 (add-hook 'java-mode-hook 'my-java-mode-hook)
 ;;}}}
+
 
 
 ;;{{{ Python Mode设置
@@ -354,10 +347,6 @@ PROPS are additional properties."
 ;;}}}
 
 
-;;{{{ 注释配置
-;; (load-file "/home/jerry/lib/emacs-lisp/gnome-doc.el")
-;;}}}
-
 
 ;;{{{ makefile-mode ;;;;
 (add-hook 'makefile-mode-hook 'imenu-add-menubar-index)
@@ -372,12 +361,6 @@ PROPS are additional properties."
          (0 'font-lock-warning-face t)))
    (";" ("[* ]\\*[ \t]*\\(\\w.*\\)\\*" nil nil
          (1 'font-lock-warning-face t)))))
-
-
-;; (mapcar (function (lambda (elem)
-;;                     (add-hook 'emacs-lisp-mode-hook elem)))
-;;         '(imenu-add-menubar-index turn-on-eldoc-mode))
-;;               ;; checkdoc-minor-mode))
 
 ;; lisp 开发用的
 (defun my-emacs-lisp-mode-hook-fn ()
@@ -403,6 +386,7 @@ PROPS are additional properties."
       eval-expression-print-length 100)
 ;;;
 ;;}}} Lisp-mode ;;;;
+
 
 
 ;;{{{ WoMan ;;;;
@@ -433,6 +417,7 @@ PROPS are additional properties."
 (add-hook 'woman-post-format-hook (lambda () (setq woman-frame nil)))
 ;;;
 ;;}}} WoMan ;;;;
+
 
 
 ;;{{{ eshell ;;;;
@@ -531,6 +516,7 @@ Argument STRING pwd."
 ;;}}} eshell ;;;;
 
 
+
 ;;{{{ Shell-mode ;;;;
 ;;; Prefer terminal-mode really. Eshell even better.
 (setq explicit-shell-file-name "bash"
@@ -567,6 +553,7 @@ Argument STRING pwd."
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 ;;;
 ;;}}} Shell-mode ;;;;
+
 
 
 ;;{{{ 对相应的文件设定相应的模式，以便正确的语法显亮

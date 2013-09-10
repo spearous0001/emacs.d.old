@@ -13,7 +13,7 @@
 (setq semanticdb-project-roots 
     (list
     (expand-file-name "/")))
-    
+
 ;; Semantic DataBase存储位置
 ;(setq semanticdb-default-save-directory
 ;      (expand-file-name "~/.emacs.d/semanticdb"))
@@ -111,21 +111,6 @@
   (local-set-key [(tab)] 'indent-or-complete)
   )
 (add-hook 'c-mode-common-hook 'yyc/c-mode-keys)
-
-
-;;(global-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-;;(global-set-key "\C-cb" 'semantic-mrub-switch-tags)
-;;(global-set-key "\C-cR" 'semantic-symref) ;; 当前光标下的函数被哪些函数调用
-;;(global-set-key "\C-cj" 'semantic-ia-fast-jump)
-;;(global-set-key "\C-cs" 'semantic-ia-show-summary)
-;;(global-set-key "\C-cl" 'semantic-ia-show-doc)
-;;(global-set-key "\C-cr" 'semantic-symref-symbol)
-;;(global-set-key "\C-c/" 'semantic-ia-complete-symbol)
-;;(global-set-key "\C-c>" 'semantic-complete-analyze-inline)
-;;(global-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
-;;(global-set-key "." 'semantic-complete-self-insert)
-;;(global-set-key ">" 'semantic-complete-self-insert)
-;;(global-set-key [(tab)] 'indent-or-complete)
 
 
 ;; smart complitions

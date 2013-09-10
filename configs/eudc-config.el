@@ -46,7 +46,7 @@
 ;(global-dictionary-tooltip-mode t)
 
 ;;在dictd中使用中文字典的时候，需要在~/.emacs中加入字典的编码格式。
-;; 设定中文词典的解码
+;;设定中文词典的解码
 (setq dictionary-coding-systems-for-dictionaries
       '(("cdict" . utf-8)
    ("xdict" . utf-8)
